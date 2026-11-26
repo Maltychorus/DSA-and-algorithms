@@ -1,1 +1,53 @@
+import java.util.Arrays;
 
+public class ReverseArray {
+    public static void main(String[] args) {
+
+        int[] arr = {1, 2, 3, 4, 5};
+        int n = arr.length;
+
+        /*
+         * Approach 1: Using an Auxiliary Array
+         *
+         * Copy elements in reverse order using index (n - 1 - i).
+         *
+         * Operation Count: 3n + 3
+         * Time Complexity: O(n)
+         * Auxiliary Space: O(n)
+         */
+
+        int[] rev = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            rev[i] = arr[n - 1 - i];
+        }
+
+        System.out.println("Brute Force: " + Arrays.toString(rev));
+
+
+        /*
+         * Approach 2: Two-Pointer Technique
+         *
+         * Swap elements from both ends until the pointers meet or cross.
+         * Reverses the original array in-place.
+         *
+         * Operation Count: 6 * floor(n/2) + 3
+         * Time Complexity: O(n)
+         * Auxiliary Space: O(1)
+         */
+
+        int left = 0;
+        int right = n - 1;
+
+        while (left < right) {
+            int temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+
+            left++;
+            right--;
+        }
+
+        System.out.println("Optimal: " + Arrays.toString(arr));
+    }
+}
